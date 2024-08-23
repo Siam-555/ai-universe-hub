@@ -9,12 +9,15 @@
 </head>
 
 <body class="bg-white text-black p-4">
-  <button class="btn" onclick="my_modal_2.showModal()">open modal</button>
   <h1 class="text-4xl font-semibold text-center my-4">AI Universe Hub</h1>
   <button class="btn btn-error block mx-auto">Sort by date</button>
-  <span id="spinner" class="loading loading-ring loading-lg hidden"></span>
+  <div id="spinner" class="hidden"><span class="loading loading-ring loading-lg block mx-auto"></span></div>
   <div id="ai-card-container" class="p-4 my-5 bg-gray-300 rounded-xl shadow-xl grid grid-cols-3 gap-5">
   </div>
+  <!-- Open the modal using ID.showModal() method -->
+  <dialog id="show_ai_modal" class="modal">
+    <div id="spinner" class="hidden"><span class="loading loading-ring loading-lg block mx-auto"></span></div>
+  </dialog>
   <script src="script.js"></script>
 </body>
 </html>
@@ -22,28 +25,3 @@
 
 
 
-
-<!-- Open the modal using ID.showModal() method -->
-<dialog id="my_modal_2" class="modal">
-  <div class="modal-box max-w-fit max-h-screen grid grid-cols-2 gap-5 bg-white text-black">
-    <div class="bg-red-50 border rounded-2xl border-red-500">
-      <h3 class="text-lg font-bold">Hello!</h3>
-      <p class="py-4">Press ESC key or click outside to close</p>
-    </div>
-    <div class="card bg-white border border-gray-300 w-96">
-      <figure class="px-2 pt-2">
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-          class="rounded-lg" />
-      </figure>
-      <div class="card-body items-center text-center">
-        <h2 class="card-title">Shoes!</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
-      </div>
-    </div>
-  </div>
-
-  <form method="dialog" class="modal-backdrop">
-    <button>close</button>
-  </form>
-</dialog>
