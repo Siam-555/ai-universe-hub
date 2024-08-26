@@ -36,13 +36,31 @@ const aiDetails = (data) => {
   const modalContainer = `
     <div class="modal-box max-w-fit max-h-screen grid grid-cols-2 gap-5 bg-white text-black">
       <div id="first-details-part" class="p-4 bg-red-50 border w-96 rounded-2xl border-red-500">
-        <h3 class="text-lg font-bold">${data.description}</h3>
-        <div class="grid grid-cols-3">
-          ${data.pricing.map( dat => {
-            `<p>${dat.price}</p>
-            
-            <p>${dat.plan}</p>`
-          })}
+        <h3 class="text-lg font-semibold">${data.description}</h3>
+        <div id='pricing' class="p-2 grid grid-cols-3 gap-2">
+          ${data.pricing.map( d => {
+            return `
+              <div class="p-2 bg-white rounded-xl text-center content-center text-red-400">
+                <p class="mb-3 text-blue-600">${d.price}</p>
+                <p class="text-green-500">${d.plan}</p>
+              </div>`
+          }).join("")}
+        </div>
+        <div class="p-2 grid grid-cols-2">
+          <div>
+            <h3 class="text-xl font-semibold">Features</h3>
+            <ol class="pl-7">
+              ${Object.values(data.features).map( feature => `<li class="mt-2 list-disc">${feature.feature_name}</li>`).join("")}
+            </ol>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold">Integrations</h3>
+            <ol class="pl-7">
+              ${data.integrations && data.integrations.length > 0 
+                ? data.integrations.map(integration => `<li class="mt-2 list-disc">${integration}</li>`).join("") 
+                : "No data found"}
+            </ol>
+          </div>
         </div>
       </div>
 
@@ -50,7 +68,7 @@ const aiDetails = (data) => {
         <figure class="px-2 pt-2">
           <img src="${data.image_link[0]}" class="rounded-lg" />
         </figure>
-        <div class="card-body pt-5 items-center text-center">
+        <div class="card-body pt-5 items-center text-center content-center">
           <h2 class="card-title">Shoes!</h2>
           <p>If a dog chews shoes whose shoes does he choose?</p>
         </div>
@@ -59,7 +77,7 @@ const aiDetails = (data) => {
     </div>
     <form method="dialog" class="modal-backdrop">
       <button>close</button>
-    </form>`;
+    </form>`
     showSpinner(false);
   showAIDetails.innerHTML = modalContainer;
 }
